@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 export class OrderService {
 
   
-  private apiUrl = 'http://localhost:3001/order';
+  // private apiUrl = 'http://localhost:3001/order';
+  private apiUrl = 'https://ecommerce-website-angular-3.onrender.com/order';
 
 constructor(private http: HttpClient) {}
 

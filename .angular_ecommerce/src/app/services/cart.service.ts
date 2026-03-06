@@ -10,7 +10,8 @@ import { Product } from './product';
 })
 
 export class CartService {
-  private apiUrl = 'http://localhost:3001/carts';
+  // private apiUrl = 'http://localhost:3001/carts';
+  private apiUrl = 'https://ecommerce-website-angular-3.onrender.com/carts';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
