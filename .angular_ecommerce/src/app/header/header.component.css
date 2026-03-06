@@ -1,0 +1,24 @@
+.header-icons {
+    display: flex;
+    gap: 20px; /* Space between icons */
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.header-icons a {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+.nav-link span {
+    font-size: 1.5rem; /* Make icons bigger */
+    font-weight: bold; /* Increase thickness */
+    color: black; /* Ensure visibility */
+  }
+  
+
+.header-icons svg {
+    width: 24px;
+    height: 24px;
+    color: #333; /* Adjust icon color */
+}

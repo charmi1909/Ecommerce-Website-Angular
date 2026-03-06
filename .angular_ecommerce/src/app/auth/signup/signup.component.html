@@ -1,0 +1,40 @@
+<div class="auth-container">
+  <div class="auth-box">
+    <h2>Sign Up</h2>
+    <form (submit)="onSignup()">
+      <div class="input-group">
+        <input
+          type="text"
+          placeholder="Full Name"
+          [(ngModel)]="user.name"
+          name="name"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <input
+          type="email"
+          placeholder="Email Address"
+          [(ngModel)]="user.email"
+          name="email"
+          required
+        />
+      </div>
+      <div class="input-group">
+        <input
+          type="password"
+          placeholder="Create Password"
+          [(ngModel)]="user.passwordHash"
+          name="password"
+          required
+        />
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p class="redirect-text">
+      Already have an account?
+      <a (click)="goToSignIn()">Sign in</a>
+    </p>
+  </div>
+</div>
