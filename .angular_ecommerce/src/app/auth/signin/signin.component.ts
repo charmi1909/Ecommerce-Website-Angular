@@ -16,7 +16,8 @@ export class SigninComponent {
     passwordHash: ''
   };
 
-  private apiUrl = 'http://localhost:3001/auth';
+  // private apiUrl = 'http://localhost:3001/auth';
+  private apiUrl = 'https://ecommerce-website-angular-3.onrender.com/auth';
 
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {} 
 
