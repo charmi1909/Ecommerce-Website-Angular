@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class WishlistService {
-  private baseUrl = 'http://localhost:3001/wishlists'; 
+  // private baseUrl = 'http://localhost:3001/wishlists'; 
+  private baseUrl = 'https://ecommerce-website-angular-3.onrender.com/wishlists';
 
   constructor(private http: HttpClient) {}
 
