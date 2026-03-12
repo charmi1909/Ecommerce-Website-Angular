@@ -30,7 +30,7 @@ export class CartService {
 
  
   getBestSellingProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:3001/products/best-selling')
+    return this.http.get<Product[]>('https://ecommerce-website-angular-3.onrender.com/products/best-selling')
       .pipe(catchError(error => {
         console.error("Error fetching best-selling products:", error);
         return throwError(() => error);
