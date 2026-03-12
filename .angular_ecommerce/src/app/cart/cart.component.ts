@@ -63,7 +63,6 @@ export class CartComponent implements OnInit {
         } else {
           this.cartItems = [];
         }
-        this.toastr.success('Cart loaded successfully', 'Success');
         this.loading = false;
       },
       error: () => {

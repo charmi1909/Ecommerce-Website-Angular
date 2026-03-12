@@ -17,14 +17,18 @@
         <div class="col-md-9">
             <div class="row g-4">
                 <div class="col-md-4" *ngFor="let product of products">
-                    <div class="card product-card border-0 shadow-sm p-2 position-relative">
-                        <img [src]="product.images && product.images.length ? product.images[0] : ''" class="card-img-top rounded" alt="{{ product.name }}">
+                    <div class="card product-card border-0 shadow-sm p-2 position-relative h-100">
+                        <a [routerLink]="['/product', product._id]" class="text-decoration-none text-dark">
+                          <img [src]="product.images && product.images.length ? product.images[0] : ''" class="card-img-top rounded" alt="{{ product.name }}">
+                        </a>
 
                         
 
                         <!-- Product Info -->
-                        <div class="card-body text-center">
-                            <h6 class="card-title fw-bold">{{ product.name }}</h6>
+                        <div class="card-body text-center d-flex flex-column">
+                            <a [routerLink]="['/product', product._id]" class="text-decoration-none text-dark">
+                              <h6 class="card-title fw-bold text-truncate">{{ product.name }}</h6>
+                            </a>
                             <p class="text-muted small">{{ product.category.name }}</p>
 
                             <!-- Price Section -->
@@ -36,7 +40,7 @@
                                 <span class="badge bg-warning text-dark">🔥 10% OFF</span>
                             </div>
 
-                            <p class="text-muted small mt-2">
+                            <p class="text-muted small mt-2 flex-grow-1">
                               {{ product.description | slice:0:60 }}<span *ngIf="product.description && product.description.length > 60">...</span>
                             </p>
 

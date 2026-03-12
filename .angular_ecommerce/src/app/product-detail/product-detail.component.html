@@ -1,0 +1,89 @@
+<div class="product-detail" *ngIf="!loading && product">
+  <div class="container py-5">
+    <div class="row g-4">
+      <div class="col-md-5">
+        <div class="product-main-image shadow-sm rounded">
+          <img
+            [src]="product.images && product.images.length ? product.images[0] : ''"
+            [alt]="product.name"
+            class="img-fluid rounded"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-7">
+        <h2 class="fw-bold mb-2">{{ product.name }}</h2>
+        <p class="text-muted mb-1">{{ product.category.name }}</p>
+
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <span class="rating-badge" *ngIf="product.rating">
+            ★ {{ product.rating | number: '1.1-1' }}
+          </span>
+          <span class="badge bg-success-subtle text-success fw-semibold">In Stock</span>
+        </div>
+
+        <div class="d-flex align-items-center gap-3 mb-3">
+          <span class="price-current">
+            ${{ product.price - (product.price * 0.10) | number: '1.2-2' }}
+          </span>
+          <span class="price-old">
+            ${{ product.price | number: '1.2-2' }}
+          </span>
+          <span class="badge bg-warning text-dark">10% OFF</span>
+        </div>
+
+        <p class="text-secondary lead mb-4">
+          {{ product.description || 'No description available for this product.' }}
+        </p>
+
+        <div class="d-flex flex-wrap gap-3 mb-4">
+          <button class="btn btn-lg btn-primary d-flex align-items-center gap-2" (click)="addToCart()">
+            <span>🛒</span>
+            <span>Add to Cart</span>
+          </button>
+          <button class="btn btn-lg btn-outline-danger d-flex align-items-center gap-2" (click)="addToWishlist()">
+            <span>♥</span>
+            <span>Add to Wishlist</span>
+          </button>
+        </div>
+
+        <div class="product-meta text-muted small">
+          <div>Category: <span class="fw-semibold">{{ product.category.name }}</span></div>
+          <div>Product ID: <span class="fw-semibold">{{ product._id }}</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="related-section mt-5" *ngIf="relatedProducts.length">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4 class="fw-bold m-0">You may also like</h4>
+        <a routerLink="/products" class="text-decoration-none small text-primary">View all products</a>
+      </div>
+      <div class="row g-3">
+        <div class="col-6 col-md-4 col-lg-3" *ngFor="let rp of relatedProducts">
+          <a [routerLink]="['/product', rp._id]" class="card related-card h-100 text-decoration-none text-dark">
+            <img
+              [src]="rp.images && rp.images.length ? rp.images[0] : ''"
+              [alt]="rp.name"
+              class="card-img-top related-image"
+            />
+            <div class="card-body p-2">
+              <div class="small text-muted text-truncate">{{ rp.category.name }}</div>
+              <div class="fw-semibold text-truncate">{{ rp.name }}</div>
+              <div class="fw-bold text-success small">
+                ${{ rp.price - (rp.price * 0.10) | number: '1.2-2' }}
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-detail-loading" *ngIf="loading">
+  <div class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+

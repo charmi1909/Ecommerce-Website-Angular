@@ -1,276 +1,140 @@
-<div class="preloader-wrapper">
-    <div class="preloader">
-    </div>
-  </div>
+<div class="preloader-wrapper" id="preloader">
+  <div class="preloader"></div>
+</div>
 
-  <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart">
-    <div class="offcanvas-header justify-content-center">
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <div class="order-md-last">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class="text-primary" >Your cart</span>
-          <span class="badge bg-primary rounded-pill">3</span>
-        </h4>
-        <ul class="list-group mb-3">
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Growers cider</h6>
-              <small class="text-body-secondary">Brief description</small>
-            </div>
-            <span class="text-body-secondary">$12</span>
+<header class="site-header">
+  <div class="header-inner">
+
+    <a routerLink="/home" class="logo">
+      <i class="bi bi-shop" style="color:#ff7a18;"></i>
+      <span>Shop</span>
+    </a>
+
+    <nav class="nav-main">
+      <a routerLink="/home" class="nav-link">
+        <i class="bi bi-house-door" style="color:#4CAF50;"></i>
+        <span>Home</span>
+      </a>
+
+      <div class="dropdown nav-drop">
+        <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown">
+          <i class="bi bi-grid-3x3-gap" style="color:#2196F3;"></i>
+          <span>Shop</span>
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-nav">
+          <li>
+            <a class="dropdown-item" routerLink="/products">
+              <i class="bi bi-bag" style="color:#FF9800;"></i> All products
+            </a>
           </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Fresh grapes</h6>
-              <small class="text-body-secondary">Brief description</small>
-            </div>
-            <span class="text-body-secondary">$8</span>
+          <li>
+            <a class="dropdown-item" (click)="goToCart()">
+              <i class="bi bi-cart3" style="color:#E91E63;"></i> Cart
+            </a>
           </li>
-          <li class="list-group-item d-flex justify-content-between lh-sm">
-            <div>
-              <h6 class="my-0">Heinz tomato ketchup</h6>
-              <small class="text-body-secondary">Brief description</small>
-            </div>
-            <span class="text-body-secondary">$5</span>
+          <li>
+            <a class="dropdown-item" (click)="goToWishlist()">
+              <i class="bi bi-heart" style="color:#F44336;"></i> Wishlist
+            </a>
           </li>
-          <li class="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>$20</strong>
+          <li>
+            <a class="dropdown-item" (click)="goToOrderHistory()">
+              <i class="bi bi-box-seam" style="color:#9C27B0;"></i> Order history
+            </a>
           </li>
         </ul>
-  
-        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
       </div>
+    </nav>
+
+    <div class="header-actions">
+
+      <ng-container *ngIf="!isLoggedIn">
+        <button type="button" class="action-btn" (click)="navigateToSignup()">
+          <i class="bi bi-person" style="color:#3F51B5;"></i>
+          <span>Sign in</span>
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="isLoggedIn">
+        <button type="button" class="action-btn" (click)="logout()">
+          <i class="bi bi-box-arrow-right" style="color:#ff5252;"></i>
+          <span>Sign out</span>
+        </button>
+      </ng-container>
+
+      <button type="button" class="action-btn" (click)="goToWishlist()">
+        <i class="bi bi-heart" style="color:#ff4081;"></i>
+        <span>Wishlist</span>
+      </button>
+
+      <button type="button" class="action-btn" (click)="goToCart()">
+        <i class="bi bi-cart3" style="color:#00BCD4;"></i>
+        <span>Cart</span>
+      </button>
+
+      <button type="button" class="action-btn" (click)="goToOrderHistory()">
+        <i class="bi bi-box-seam" style="color:#673AB7;"></i>
+        <span>Orders</span>
+      </button>
+
     </div>
+
+    <button class="navbar-toggler mobile-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNav">
+      <i class="bi bi-list" style="color:#333;"></i>
+    </button>
+
   </div>
-  
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar">
-  
-    <div class="offcanvas-header justify-content-between">
-      <h4 class="fw-normal text-uppercase fs-6">Menu</h4>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-  
-    <div class="offcanvas-body">
-  
-      <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
-        <li class="nav-item border-dashed active">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#fruits"></use></svg>
-            <span>Fruits and vegetables</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#dairy"></use></svg>
-            <span>Dairy and Eggs</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#meat"></use></svg>
-            <span>Meat and Poultry</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#seafood"></use></svg>
-            <span>Seafood</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#bakery"></use></svg>
-            <span>Bakery and Bread</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#canned"></use></svg>
-            <span>Canned Goods</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#frozen"></use></svg>
-            <span>Frozen Foods</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#pasta"></use></svg>
-            <span>Pasta and Rice</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#breakfast"></use></svg>
-            <span>Breakfast Foods</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#snacks"></use></svg>
-            <span>Snacks and Chips</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <button class="btn btn-toggle dropdown-toggle position-relative w-100 d-flex justify-content-between align-items-center text-dark p-2" data-bs-toggle="collapse" data-bs-target="#beverages-collapse" aria-expanded="false">
-            <div class="d-flex gap-3">
-              <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#beverages"></use></svg>
-              <span>Beverages</span>
-            </div>
-          </button>
-          <div class="collapse" id="beverages-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal ps-5 pb-1">
-              <li class="border-bottom py-2"><a href="index.html" class="dropdown-item">Water</a></li>
-              <li class="border-bottom py-2"><a href="index.html" class="dropdown-item">Juice</a></li>
-              <li class="border-bottom py-2"><a href="index.html" class="dropdown-item">Soda</a></li>
-              <li class="border-bottom py-2"><a href="index.html" class="dropdown-item">Tea</a></li>
-            </ul>
-          </div>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#spices"></use></svg>
-            <span>Spices and Seasonings</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#baby"></use></svg>
-            <span>Baby Food and Formula</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#health"></use></svg>
-            <span>Health and Wellness</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#household"></use></svg>
-            <span>Household Supplies</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#personal"></use></svg>
-            <span>Personal Care</span>
-          </a>
-        </li>
-        <li class="nav-item border-dashed">
-          <a href="index.html" class="nav-link d-flex align-items-center gap-3 text-dark p-2">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#pet"></use></svg>
-            <span>Pet Food and Supplies</span>
-          </a>
-        </li>
-      </ul>
-    
-    </div>
-  
+</header>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNav">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
   </div>
 
-  <header>
-    <div class="container-fluid">
-      <div class="row py-3 border-bottom">
-        
-        <div class="col-sm-4 col-lg-2 text-center text-sm-start d-flex gap-3 justify-content-center justify-content-md-start">
-          <div class="d-flex align-items-center my-3 my-sm-0">
-            <a routerLink="/home">
-              <img src="images/logo.svg" alt="logo" class="img-fluid">
-            </a>
-          </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar">
-            <svg width="24" height="24" viewBox="0 0 24 24"><use xlink:href="#menu"></use></svg>
-          </button>
-        </div>
-        
-       
+  <div class="offcanvas-body">
 
-           
-  
-        <div class="col-lg-4">
-          <ul class="navbar-nav list-unstyled d-flex flex-row gap-3 gap-lg-5 justify-content-center flex-wrap align-items-center mb-0 fw-bold text-uppercase text-dark">
-            <li class="nav-item active">
-              <a routerLink="/home" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle pe-3" role="button" id="pages" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-              <ul class="dropdown-menu border-0 p-3 rounded-0 shadow" aria-labelledby="pages">
-                <li><a routerLink="/home" class="dropdown-item">About Us </a></li>
-                <li><a routerLink="/home" class="dropdown-item">Shop </a></li>
-                <li><a routerLink="/products" class="dropdown-item">Single Product </a></li>
-                <li><a (click)="goToCart()" class="dropdown-item"> Cart</a></li>
-                <li><a routerLink="/order" class="dropdown-item">Checkout </a></li>
-                <li><a (click)="goToOrderHistory()" class="dropdown-item">Order-History </a></li>
-                <li><a routerLink="/home" class="dropdown-item">Blog </a></li>
-                <li><a routerLink="/home" class="dropdown-item">Single Post </a></li>
-                <li><a routerLink="/home" class="dropdown-item">Styles </a></li>
-                <li><a routerLink="/home" class="dropdown-item">Contact </a></li>
-                <li><a routerLink="/home" class="dropdown-item">Wishlist </a></li>
-                <li><a routerLink="/order-confirmation" class="dropdown-item">Thank You </a></li>
-                <li><a routerLink="/home" class="dropdown-item">My Account </a></li>
-                <li><a routerLink="/home" class="dropdown-item">404 Error </a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+    <a routerLink="/home" class="mobile-nav-link" data-bs-dismiss="offcanvas">
+      <i class="bi bi-house-door" style="color:#4CAF50;"></i> Home
+    </a>
 
-        <div class="col-sm-8 col-lg-2 d-flex gap-4 justify-content-center">
-          <a *ngIf="!isLoggedIn" (click)="navigateToSignup()">
-            <span class="bi bi-person-fill" style="font-size: 1.3rem;"></span> Login
-          </a>
-          <a *ngIf="isLoggedIn" (click)="logout()">
-            <span class="bi bi-person-fill" style="font-size: 1.3rem;"></span> Logout
-          </a>
-          <a (click)="goToCart()">
-            <span class="bi bi-cart-fill" style="font-size: 1.3rem;"></span> Cart
-          </a>
-          <a (click)="goToOrderHistory()">
-            <span class="bi bi-box-seam" style="font-size: 1.3rem;"></span> Order History
-          </a>
+    <a routerLink="/products" class="mobile-nav-link" data-bs-dismiss="offcanvas">
+      <i class="bi bi-bag" style="color:#FF9800;"></i> Products
+    </a>
 
-          <a (click)="goToWishlist()">
-            <span class="bi bi-heart" style="font-size: 1.3rem;"></span> Wishlist
+    <a (click)="goToCart(); $event.preventDefault()" routerLink="/carts"
+       class="mobile-nav-link" data-bs-dismiss="offcanvas">
+      <i class="bi bi-cart3" style="color:#E91E63;"></i> Cart
+    </a>
 
-          </a>
+    <a (click)="goToWishlist(); $event.preventDefault()" routerLink="/wishlist"
+       class="mobile-nav-link" data-bs-dismiss="offcanvas">
+      <i class="bi bi-heart" style="color:#F44336;"></i> Wishlist
+    </a>
 
-        </div>
-        
-        
-        <div class="col-sm-8 col-lg-2 d-flex gap-5 align-items-center justify-content-center justify-content-sm-end">
-          <ul class="d-flex justify-content-end list-unstyled m-0">
-            <li>
-              <a routerLink="/home" class="p-2 mx-1">
-                <svg width="24" height="24"><use xlink:href="#user"></use></svg>
-              </a>
-            </li>
-            <li>
-              <a routerLink="/wishlist" class="p-2 mx-1">
-                <svg width="24" height="24"><use xlink:href="#wishlist"></use></svg>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                <svg width="24" height="24"><use xlink:href="#shopping-bag"></use></svg>
-              </a>
-            </li>
-          </ul>
-        </div>
-  
-      </div>
-    </div>
-  </header>
+    <a (click)="goToOrderHistory(); $event.preventDefault()" routerLink="/order-history"
+       class="mobile-nav-link" data-bs-dismiss="offcanvas">
+      <i class="bi bi-box-seam" style="color:#9C27B0;"></i> Orders
+    </a>
 
+    <a routerLink="/order" class="mobile-nav-link" data-bs-dismiss="offcanvas">
+      <i class="bi bi-credit-card" style="color:#00BCD4;"></i> Checkout
+    </a>
 
+    <ng-container *ngIf="!isLoggedIn">
+      <a (click)="navigateToSignup(); $event.preventDefault()" routerLink="/signin"
+         class="mobile-nav-link" data-bs-dismiss="offcanvas">
+        <i class="bi bi-person" style="color:#3F51B5;"></i> Sign in
+      </a>
+    </ng-container>
 
+    <ng-container *ngIf="isLoggedIn">
+      <a (click)="logout(); $event.preventDefault()" routerLink="/signin"
+         class="mobile-nav-link" data-bs-dismiss="offcanvas">
+        <i class="bi bi-box-arrow-right" style="color:#ff5252;"></i> Sign out
+      </a>
+    </ng-container>
 
-
-
-
-
+  </div>
+</div>

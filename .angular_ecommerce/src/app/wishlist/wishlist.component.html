@@ -1,26 +1,36 @@
-<div class="wishlist-container">
-  <h2>Wishlist</h2>
+<section class="wishlist-page">
+  <div class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4 class="fw-bold mb-0"><i class="bi bi-heart me-2"></i>My Wishlist</h4>
+      <span class="text-muted small" *ngIf="!loading">
+        {{ items.length }} item(s)
+      </span>
+    </div>
 
-  <div *ngIf="loading" class="wishlist-loading">Loading...</div>
-
-  <div *ngIf="!loading && items.length === 0" class="wishlist-empty">
-    Your wishlist is empty.
-  </div>
-
-  <div class="wishlist-grid" *ngIf="!loading && items.length > 0">
-    <div class="wishlist-card" *ngFor="let item of items">
-      <div class="wishlist-image">
-        <img *ngIf="item.imageUrl" [src]="item.imageUrl" [alt]="item.name" />
+    <div *ngIf="loading" class="text-center py-4">
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
-      <div class="wishlist-body">
-        <h4>{{ item.name }}</h4>
-        <p class="price">${{ item.price | number:'1.2-2' }}</p>
-        <div class="wishlist-actions">
-          <button class="btn-primary" (click)="addToCart(item)">Add to Cart</button>
-          <button class="btn-secondary" (click)="remove(item)">Remove</button>
+    </div>
+
+    <div *ngIf="!loading && items.length === 0" class="text-center text-muted py-4">
+      Your wishlist is empty. Save products you love for later.
+    </div>
+
+    <div class="wishlist-grid" *ngIf="!loading && items.length > 0">
+      <div class="wishlist-card" *ngFor="let item of items">
+        <div class="wishlist-image">
+          <img *ngIf="item.imageUrl" [src]="item.imageUrl" [alt]="item.name" />
+        </div>
+        <div class="wishlist-body">
+          <h6 class="mb-1 text-truncate">{{ item.name }}</h6>
+          <p class="price mb-2">${{ item.price | number:'1.2-2' }}</p>
+          <div class="wishlist-actions">
+            <button class="btn-primary" (click)="addToCart(item)"><i class="bi bi-cart-plus me-1"></i>Add to cart</button>
+            <button class="btn-secondary" (click)="remove(item)"><i class="bi bi-trash me-1"></i>Remove</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
+</section>

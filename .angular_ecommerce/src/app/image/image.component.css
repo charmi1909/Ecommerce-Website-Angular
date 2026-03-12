@@ -1,0 +1,38 @@
+.hero-section{
+  background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 80px 0;
+}
+
+.hero-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.45); /* dark overlay */
+}
+
+.hero-section .container-lg{
+  position: relative;
+  z-index: 2;
+}
+
+/* Make text visible */
+.hero-section h2,
+.hero-section p{
+  color: white;
+}
+
+/* Improve buttons */
+.hero-section .btn-primary{
+  background: #28a745;
+  border: none;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.hero-section .btn-primary:hover{
+  background: #218838;
+}

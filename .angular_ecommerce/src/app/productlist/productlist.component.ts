@@ -6,7 +6,7 @@ import { Product } from '../services/product';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { CartService } from '../services/cart.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -16,7 +16,7 @@ import { WishlistService } from '../wishlist.service';
 @Component({
   selector: 'app-productlist',
   standalone: true, 
-  imports: [CommonModule, FormsModule], 
+  imports: [CommonModule, FormsModule, RouterModule], 
   templateUrl: './productlist.component.html',
   styleUrls: ['./productlist.component.css']
 })
@@ -33,7 +33,8 @@ export class ProductlistComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private toastr = inject(ToastrService);
   @Input() product: any;
-  apiUrl = "http://localhost:3001/carts";
+  // apiUrl = "http://localhost:3001/carts";
+  apiUrl = 'https://ecommerce-website-angular-3.onrender.com/carts';
 
   constructor(private cartService: CartService, private authService: AuthService, private wishlistService: WishlistService) {}
   ngOnInit() {

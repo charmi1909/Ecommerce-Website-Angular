@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.css']
 })
@@ -17,7 +17,7 @@ export class ForgotPasswordComponent {
     passwordHash: ''
   };
 
-  private apiUrl = 'http://localhost:3001/auth';
+  private apiUrl = 'https://ecommerce-website-angular-3.onrender.com/auth';
 
   constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {}
 

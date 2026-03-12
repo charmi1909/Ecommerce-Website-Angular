@@ -1,0 +1,42 @@
+<section class="top-recommendations py-5">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <h3 class="fw-bold mb-1">Top Recommendations</h3>
+        <p class="text-muted mb-0">Handpicked products customers love right now.</p>
+      </div>
+      <a routerLink="/products" class="btn btn-outline-success btn-sm">View all</a>
+    </div>
+
+    <div *ngIf="loading" class="d-flex justify-content-center py-4">
+      <div class="spinner-border text-success" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <div class="row g-3" *ngIf="!loading">
+      <div class="col-6 col-md-3" *ngFor="let product of products">
+        <a [routerLink]="['/product', product._id]" class="card rec-card h-100 text-decoration-none text-dark">
+          <img
+            [src]="product.images && product.images.length ? product.images[0] : ''"
+            [alt]="product.name"
+            class="card-img-top rec-image"
+          />
+          <div class="card-body p-2">
+            <div class="small text-muted text-truncate">{{ product.category.name }}</div>
+            <div class="fw-semibold text-truncate">{{ product.name }}</div>
+            <div class="d-flex justify-content-between align-items-center mt-1">
+              <span class="fw-bold text-success small">
+                ${{ product.price - (product.price * 0.10) | number: '1.2-2' }}
+              </span>
+              <span class="badge bg-warning text-dark small" *ngIf="product.rating">
+                ★ {{ product.rating | number: '1.1-1' }}
+              </span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+

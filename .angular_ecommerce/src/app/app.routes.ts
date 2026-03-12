@@ -16,6 +16,7 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/signin', pathMatch: 'full' },
@@ -25,6 +26,7 @@ export const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'products', component: ProductlistComponent, canActivate: [authGuard] },
   { path: 'products/:id', component: ProductlistComponent, canActivate: [authGuard] },
+  { path: 'product/:id', component: ProductDetailComponent, canActivate: [authGuard] },
   { path: 'carts', component: CartComponent, canActivate: [authGuard] },
   { path: 'order', component: OrderComponent, canActivate: [authGuard] },
   { path: 'order-confirmation', component: OrderConfirmationComponent, canActivate: [authGuard] },

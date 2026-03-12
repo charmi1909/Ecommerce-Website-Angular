@@ -1,0 +1,22 @@
+.top-recommendations {
+  background: #f3f4f6;
+}
+
+.rec-card {
+  border: none;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rec-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.15);
+}
+
+.rec-image {
+  height: 150px;
+  object-fit: cover;
+}
+

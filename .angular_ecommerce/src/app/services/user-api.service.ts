@@ -39,7 +39,11 @@ export class UserApiService {
   private _http = inject(HttpClient);
 
   getAllCategory(){
-    return this._http.get(`${this.api_link}/category`)
+    return this._http.get(`${this.api_link}/category`);
+  }
+
+  getAllProducts(): Observable<Product[]> {
+    return this._http.get<Product[]>(`${this.api_link}/products`);
   }
 
   getProductsByCategoryId(id: string): Observable<Product[]> {
